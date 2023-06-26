@@ -54,7 +54,7 @@ The client app is now running and will connect to the server.
 # Flutter Client
 The Flutter app is organized around the HomePage widget, which maintains a WebSocketChannel connection to the server and an AudioPlayer to play the audio file.
 
-# Key methods in the HomePage widget include:
+Key methods in the HomePage widget include:
 
 initPreferences: Initializes shared preferences and checks if the audio file has already been downloaded. If not, it starts the download.
 
