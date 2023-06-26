@@ -37,22 +37,16 @@ Navigate to the server directory.
 
 Run the server script:
 
-bash
-Copy code
-python server.py
+python3 socketserver.py
 
 The server is now running and waiting for clients to connect.
 
 ## Flutter Client
-Navigate to the client directory.
+To run the app locally in Xcode simulator, navigate to the client directory, and do:
 
-Run the client app:
-
-bash
-Copy code
 flutter run
 
-The client app is now running and will connect to the server.
+The client app is now running and will attempt to connect to the server.
 
 ## Code Explanation
 
