@@ -1,0 +1,47 @@
+name: womuplayer814
+description: A new Flutter application.
+
+publish_to: 'none'
+
+version: 1.0.0+5
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  just_audio: ^0.9.5
+  path_provider: ^2.0.2
+  dio: ^4.0.0
+  web_socket_channel: ^2.1.0
+  shared_preferences: ^2.1.2
+
+flutter:
+  uses-material-design: true
+
+
+
+
+
+
+#name: womuplayer814
+#description: A new Flutter application.
+
+#publish_to: 'none' 
+
+#version: 1.0.0+1
+
+#environment:
+#  sdk: ">=2.12.0 <3.0.0" 
+
+#dependencies:
+#  flutter:
+#    sdk: flutter
+#  just_audio: ^0.9.5
+#  path_provider: ^2.0.2
+#  dio: ^4.0.0
+#  web_socket_channel: ^2.1.0
+
+#flutter:
+#  uses-material-design: true
