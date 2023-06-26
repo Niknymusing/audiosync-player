@@ -48,6 +48,7 @@ Run the client app:
 bash
 Copy code
 flutter run
+
 The client app is now running and will connect to the server.
 
 ## Code Explanation
