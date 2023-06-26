@@ -3,9 +3,11 @@
 This app delivers the audio content for a sound-walk, to be heard via the users iPhone device. The audio broadcast can be controlled remotely by a live technician via the server script. 
 
 ## Description
-The AudioSync Player is a Flutter application designed to sync and play audio files across multiple devices, ensuring that all devices play the same audio segment at the same time. It uses a Python WebSocket server to coordinate the playback time and a Flutter client to play the audio.
+The AudioSync Player is a Flutter application designed to sync and play audio files across multiple devices, ensuring that all devices play the same audio segment at the same time. It uses a Python WebSocket server to coordinate the playback time and a Flutter client to play the audio on the users device. The client app is developed for iPhone, and can be deployed to Apple AppStore. 
 
 The Python server runs on AWS and handles the audio segment updates for all connected clients. It computes the playback offset for each client based on its estimated round-trip time. The Flutter client downloads an audio file, maintains a WebSocket connection with the server, and plays the requested audio segment at the right time. New time-stamps can be sent to the clients by inputing a numerical interval to the server terminal running the script, on the format a,b , where a,b, can be any number (with up to 3 decimals), then press enter and all clients will syncronously hear the audio content from time a to time b. The server operator can also send text messages to be displayed to all clients interface by inputing a new message on the form "new message" and pressing enter.
+
+To run the app with your chosen server and database infrastructure, make sure to update the client flutter script with the correct server IP address and file download source.
 
 ## Installation Instructions
 Python WebSocket Server
