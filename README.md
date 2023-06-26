@@ -15,9 +15,6 @@ Clone the repository and navigate to the server directory.
 
 Install the required Python packages using pip:
 
-bash:
-
-Copy code
 pip install websockets asyncio json threading time queue
 
 # Flutter Client
@@ -30,10 +27,12 @@ Install the required Flutter packages using Flutter pub:
 
 bash:
 
-Copy code
 flutter pub get
-Usage
-Python WebSocket Server
+
+## Usage
+
+# Python WebSocket Server
+
 Navigate to the server directory.
 
 Run the server script:
