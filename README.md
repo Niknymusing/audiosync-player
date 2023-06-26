@@ -37,6 +37,7 @@ Run the server script:
 bash
 Copy code
 python server.py
+
 The server is now running and waiting for clients to connect.
 
 Flutter Client
