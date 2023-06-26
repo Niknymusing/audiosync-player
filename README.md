@@ -25,8 +25,6 @@ Clone the repository and navigate to the client directory.
 
 Install the required Flutter packages using Flutter pub:
 
-bash:
-
 flutter pub get
 
 ## Usage
