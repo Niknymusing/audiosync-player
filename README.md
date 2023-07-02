@@ -3,23 +3,69 @@
 This app delivers the audio content for a sound-walk, to be heard via the users iPhone device. The audio broadcast can be controlled remotely by a live technician via the server script. 
 
 ## Description
-The AudioSync Player is a Flutter application designed to sync and play audio files across multiple devices, ensuring that all devices play the same audio segment at the same time. It uses a Python WebSocket server to coordinate the playback time and a Flutter client to play the audio on the users device. The client app is developed for iPhone, and can be deployed to Apple AppStore. 
+The AudioSync Player is a Flutter application designed to sync and play audio files across multiple devices, ensuring that all devices play the same audio segment at the same time. It uses a Python WebSocket server to coordinate the playback time and a Flutter client to play the audio.
 
-The Python server runs on AWS and handles the audio segment updates for all connected clients. It computes the playback offset for each client based on its estimated round-trip time. The Flutter client downloads an audio file, maintains a WebSocket connection with the server, and plays the requested audio segment at the right time. New time-stamps can be sent to the clients by inputing a numerical interval to the server terminal running the script, on the format a,b , where a,b, can be any number (with up to 3 decimals), then press enter and all clients will syncronously hear the audio content from time a to time b. The server operator can also send text messages to be displayed to all clients interface by inputing a new message on the form "new message" and pressing enter.
+The Python server runs on AWS and handles the audio segment updates for all connected clients. It computes the playback offset time for each client based on its estimated round-trip time. The Flutter client app downloads an audio file to the users device, maintains a WebSocket connection with the server, and plays the requested audio segment at the right time. New time-stamps can be sent to the clients by inputing a numerical interval to the server terminal running the script, on the format a,b , where a,b, can be any number (with up to 3 decimals), then press enter and all clients will syncronously hear the audio content from time a to time b. The server operator can also send text messages to be displayed to all clients interface by inputing a new message on the form "new message" and pressing enter.
 
-To run the app with your chosen server and database infrastructure, make sure to update the client flutter script with the correct server IP address and download source for the choosen .wav file.
+## Python WebSocket Server installation and usage instructions 
 
-## Installation Instructions
-Python WebSocket Server
-Install Python 3.8 or above. You can download it from the official website: https://www.python.org/downloads/
+The server script can be run from e.g. an AWS EC2 instance. After setting up the server and 
+
+<pre>
+ssh -i /path/my-key-pair.pem ec2-user@my-instance-public-dns
+</pre>
 
 Clone the repository and navigate to the server directory.
 
 Install the required Python packages using pip:
 
-pip install websockets asyncio json threading time queue
+ <pre>
+ cd /server/directory
+ pip install websockets asyncio json threading time queue
+ </pre>
 
-# Flutter Client
+Run the server script:
+
+<pre>
+ cd /server/directory
+ python3 socketserver.py
+</pre>
+
+
+When a client connects to the server, a notification is shown in the server terminal, showing if the client has downloaded the audio file or not,
+and also showing the ping latency between the connected client and the server, which is used to sync the playback time for the client:
+
+ <pre>
+Client 2 finished downloading the audio file
+A new client 3 connected, waiting for client 3 to finish downloading the audio file
+Received message {'message': 'Client connected'}
+Received pong {'pong': 'pong'} Latency 0.16698575019836426
+ </pre>
+
+when enough clients connected and completed the download of the audio file, the server operator can send a time intervall to all clients by inputing comma-separated numerical values a,b and press enter:
+
+<pre>
+1,2
+Parsed start=1.0 and end=2.0
+
+Input start_time, end_time and press enter to update audio segment for all clients.
+Or type a server message within quotes and press enter to send to all clients.
+
+Enter input: Received ack {'ack': 'Received timestamp', 'audioDownloaded': True} Latency 0.22440719604492188
+Received ack {'ack': 'Received timestamp'} Latency 3.3042361736297607
+</pre>
+
+The audiofile will then be played back on all connected clients devices, synced in time.
+
+The server operator can also send a text message displayed to all connected clients, by inputing a messages in quotes in the server terminal and pressing enter: 
+
+ <pre>
+"server message to all connected clients"
+Sending server message: server message to all connected clients
+ </pre>
+
+
+## Installation instructions to run the Flutter client application locally
 
 Install Flutter SDK. You can download it from the official website: https://flutter.dev/docs/get-started/install
 
@@ -27,26 +73,22 @@ Clone the repository and navigate to the client directory.
 
 Install the required Flutter packages using Flutter pub:
 
+ <pre>
 flutter pub get
+ </pre>
 
-## Usage
+Run the application in e.g. Xcode simulator:
 
-# Python WebSocket Server
-
-Navigate to the server directory.
-
-Run the server script:
-
-python3 socketserver.py
-
-The server is now running and waiting for clients to connect.
-
-## Flutter Client
-To run the app locally in Xcode simulator, navigate to the client directory, and do:
-
+ <pre>
 flutter run
+ </pre>
 
-The client app is now running and will attempt to connect to the server.
+The client app is now running and will connect to the server. The application will first download the audio file, showing a progressbar until completed. Then the application waits for audio timestamps and messages from the server. When a time-stamp interval is received the audio is played for the received duration, and new messages are displayed on the interface.
+
+The app is currently available via the AppstoreCOnnect TestFlight environment, and can be downloaded and tested from this link:
+
+https://testflight.apple.com/join/rokhQmmK
+
 
 ## Code Explanation
 
@@ -74,7 +116,6 @@ send_message: Sends a message to each connected client.
 
 handle_input: Handles user input from the console, allowing the user to enter new audio segments or server messages.
 
-send_interval: Sends a new audio segment to each connected client.
 
 check_intervals_queue: Checks the queue for new audio segments and sends them to the clients.
 
