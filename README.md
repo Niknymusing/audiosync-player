@@ -19,11 +19,8 @@ bash
 Copy code
 
  <pre>
- ```bash
  cd /server/directory
  pip install websockets asyncio json threading time queue
-
- ```
  </pre>
 
 pip install websockets asyncio json threading time queue
