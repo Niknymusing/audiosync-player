@@ -65,40 +65,30 @@ Sending server message: server message to all connected clients
  </pre>
 
 
-## Installation Instructions Flutter Client application
+## Installation instructions to run the Flutter client application locally
 
-Flutter Client
 Install Flutter SDK. You can download it from the official website: https://flutter.dev/docs/get-started/install
 
 Clone the repository and navigate to the client directory.
 
 Install the required Flutter packages using Flutter pub:
 
-bash
-Copy code
+ <pre>
 flutter pub get
-Usage
-Python WebSocket Server
-Navigate to the server directory.
+ </pre>
 
-Run the server script:
+Run the application in e.g. Xcode simulator:
 
-bash
-Copy code
-python server.py
-
-The server is now running and waiting for clients to connect.
-
-Flutter Client
-Navigate to the client directory.
-
-Run the client app:
-
-bash
-Copy code
+ <pre>
 flutter run
+ </pre>
 
-The client app is now running and will connect to the server.
+The client app is now running and will connect to the server. The application will first download the audio file, showing a progressbar until completed. Then the application waits for audio timestamps and messages from the server. When a time-stamp interval is received the audio is played for the received duration, and new messages are displayed on the interface.
+
+The app is currently available via the AppstoreCOnnect TestFlight environment, and can be downloaded and tested from this link:
+
+https://testflight.apple.com/join/rokhQmmK
+
 
 ## Code Explanation
 
