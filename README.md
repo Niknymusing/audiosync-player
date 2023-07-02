@@ -7,8 +7,8 @@ The AudioSync Player is a Flutter application designed to sync and play audio fi
 
 The Python server runs on AWS and handles the audio segment updates for all connected clients. It computes the playback offset for each client based on its estimated round-trip time. The Flutter client downloads an audio file, maintains a WebSocket connection with the server, and plays the requested audio segment at the right time. New time-stamps can be sent to the clients by inputing a numerical interval to the server terminal running the script, on the format a,b , where a,b, can be any number (with up to 3 decimals), then press enter and all clients will syncronously hear the audio content from time a to time b. The server operator can also send text messages to be displayed to all clients interface by inputing a new message on the form "new message" and pressing enter.
 
-## Installation Instructions
-Python WebSocket Server
+## Installation Instructions Python WebSocket Server
+
 Install Python 3.8 or above. You can download it from the official website: https://www.python.org/downloads/
 
 Clone the repository and navigate to the server directory.
@@ -17,7 +17,20 @@ Install the required Python packages using pip:
 
 bash
 Copy code
+
+ <pre>
+ ```bash
+ cd /server/directory
+ pip install websockets asyncio json threading time queue
+
+ ```
+ </pre>
+
 pip install websockets asyncio json threading time queue
+
+
+## Installation Instructions Flutter Client application
+
 Flutter Client
 Install Flutter SDK. You can download it from the official website: https://flutter.dev/docs/get-started/install
 
